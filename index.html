@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking Barriers - Food Insecurity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #4a7c59;
+            --accent-color: #f4a261;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --orange: #e17055;
+            --red: #d63031;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(244, 162, 97, 0.4);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: var(--bg-light);
+            padding: 4rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .stat-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .content-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .card-text {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Help Actions */
+        .help-actions {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--orange) 100%);
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .action-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .action-button {
+            background: white;
+            color: var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid,
+            .content-grid,
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">🍽️ Breaking Barriers</a>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('problem')">The Problem</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('help')">How to Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Breaking Barriers to Food Security</h1>
+                <p>Together, we can ensure that no one goes hungry. Join us in the fight against food insecurity and help build stronger, healthier communities.</p>
+                <a href="#" class="cta-button" onclick="showPage('problem')">Learn More</a>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <h2 class="section-title">Food Insecurity by the Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number counter" data-target="38">0</div>
+                        <div class="stat-label">Million Americans face food insecurity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number counter" data-target="12">0</div>
+                        <div class="stat-label">Million children experience hunger</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number counter" data-target="1">0</div>
+                        <div class="stat-label">in 8 households struggle with food access</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number counter" data-target="53">0</div>
+                        <div class="stat-label">Billion meals needed annually</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Understanding Food Insecurity</h2>
+                <div class="content-grid">
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🏘️</div>
+                        <h3 class="card-title">Community Impact</h3>
+                        <p class="card-text">Food insecurity affects entire neighborhoods, limiting economic growth, educational outcomes, and overall community wellbeing.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">👨‍👩‍👧‍👦</div>
+                        <h3 class="card-title">Family Struggles</h3>
+                        <p class="card-text">Families facing food insecurity often must choose between paying for food, housing, healthcare, or other basic necessities.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🎓</div>
+                        <h3 class="card-title">Educational Effects</h3>
+                        <p class="card-text">Children experiencing hunger have difficulty concentrating in school, leading to lower academic performance and reduced future opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Problem Page -->
+    <div id="problem" class="page">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Understanding the Crisis</h1>
+                <p>Food insecurity is a complex issue that affects millions of Americans across all demographics and geographic regions.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Root Causes of Food Insecurity</h2>
+                <div class="content-grid">
+                    <div class="content-card fade-in">
+                        <div class="card-icon">💰</div>
+                        <h3 class="card-title">Economic Factors</h3>
+                        <p class="card-text">Low wages, unemployment, and rising costs of living make it difficult for families to afford adequate nutrition. Many working families still struggle to put food on the table.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🗺️</div>
+                        <h3 class="card-title">Geographic Barriers</h3>
+                        <p class="card-text">Food deserts—areas with limited access to affordable, nutritious groceries—disproportionately affect rural and urban low-income communities.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🏥</div>
+                        <h3 class="card-title">Health Challenges</h3>
+                        <p class="card-text">Medical expenses and chronic health conditions can drain family resources, forcing difficult choices between medical care and food.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🎯</div>
+                        <h3 class="card-title">Systemic Issues</h3>
+                        <p class="card-text">Lack of affordable housing, inadequate social safety nets, and limited transportation options compound food access challenges.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">📚</div>
+                        <h3 class="card-title">Educational Gaps</h3>
+                        <p class="card-text">Limited nutrition education and cooking skills can prevent families from making the most of available food resources and assistance programs.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">⚡</div>
+                        <h3 class="card-title">Emergency Situations</h3>
+                        <p class="card-text">Job loss, natural disasters, family crises, and unexpected expenses can quickly push households into food insecurity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <h2 class="section-title">The Hidden Reality</h2>
+                <div class="content-grid">
+                    <div class="content-card fade-in">
+                        <h3 class="card-title">Working Families</h3>
+                        <p class="card-text">63% of food-insecure households include at least one working adult, highlighting that employment doesn't always guarantee food security.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <h3 class="card-title">Rural Communities</h3>
+                        <p class="card-text">Rural areas face unique challenges with 87% higher rates of food insecurity compared to urban areas, compounded by limited transportation and fewer resources.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <h3 class="card-title">Senior Citizens</h3>
+                        <p class="card-text">5.2 million seniors face food insecurity, often struggling with fixed incomes and choosing between medications and meals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Help Page -->
+    <div id="help" class="page">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>How You Can Make a Difference</h1>
+                <p>Every action counts. Discover meaningful ways to contribute to the fight against food insecurity in your community.</p>
+            </div>
+        </section>
+
+        <section class="help-actions">
+            <div class="container">
+                <h2 class="section-title" style="color: white;">Take Action Today</h2>
+                <div class="action-grid">
+                    <div class="action-card fade-in">
+                        <div class="action-icon">🤝</div>
+                        <h3 class="action-title">Volunteer</h3>
+                        <p>Join local food banks, soup kitchens, or community gardens. Your time and skills can directly impact families in need.</p>
+                        <button class="action-button">Find Opportunities</button>
+                    </div>
+                    <div class="action-card fade-in">
+                        <div class="action-icon">💝</div>
+                        <h3 class="action-title">Donate</h3>
+                        <p>Financial contributions help organizations purchase food efficiently and fund essential programs. Every dollar makes a difference.</p>
+                        <button class="action-button">Make a Donation</button>
+                    </div>
+                    <div class="action-card fade-in">
+                        <div class="action-icon">📢</div>
+                        <h3 class="action-title">Advocate</h3>
+                        <p>Contact elected officials about policies addressing food insecurity. Raise awareness in your community and social networks.</p>
+                        <button class="action-button">Learn More</button>
+                    </div>
+                    <div class="action-card fade-in">
+                        <div class="action-icon">🏫</div>
+                        <h3 class="action-title">Support School Programs</h3>
+                        <p>Help fund school breakfast and lunch programs, weekend backpack programs, and summer feeding initiatives.</p>
+                        <button class="action-button">Get Involved</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Ways to Help</h2>
+                <div class="content-grid">
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🛒</div>
+                        <h3 class="card-title">Food Drives</h3>
+                        <p class="card-text">Organize food drives at work, school, or in your neighborhood. Focus on nutritious, non-perishable items that families actually need.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🌱</div>
+                        <h3 class="card-title">Community Gardens</h3>
+                        <p class="card-text">Start or support community gardens that provide fresh produce to local families while teaching valuable growing skills.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">👨‍🏫</div>
+                        <h3 class="card-title">Education Programs</h3>
+                        <p class="card-text">Support nutrition education, cooking classes, and budgeting workshops that help families maximize their food resources.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">💼</div>
+                        <h3 class="card-title">Corporate Partnerships</h3>
+                        <p class="card-text">Encourage your employer to partner with local food organizations through employee giving campaigns or volunteer programs.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">📱</div>
+                        <h3 class="card-title">Spread Awareness</h3>
+                        <p class="card-text">Use social media and personal networks to educate others about food insecurity and share resources for those in need.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🏛️</div>
+                        <h3 class="card-title">Policy Advocacy</h3>
+                        <p class="card-text">Support policies that address root causes: affordable housing, living wages, healthcare access, and strengthened nutrition programs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Trigger animations for the new page
+            setTimeout(() => {
+                animateElements();
+            }, 100);
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 40);
+            });
+        }
+
+        // Intersection Observer for animations
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.classList.contains('stat-card')) {
+                            entry.target.classList.add('animate');
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const fadeElements = document.querySelectorAll('.fade-in, .stat-card');
+            fadeElements.forEach(el => observer.observe(el));
+        }
+
+        // Animate elements when page loads or changes
+        function animateElements() {
+            // Animate stat cards if they're visible
+            const statCards = document.querySelectorAll('.stat-card');
+            const isStatsVisible = Array.from(statCards).some(card => {
+                const rect = card.getBoundingClientRect();
+                return rect.top < window.innerHeight && rect.bottom > 0;
+            });
+
+            if (isStatsVisible && !document.querySelector('.counter').textContent.includes('0')) {
+                // Reset counters
+                document.querySelectorAll('.counter').forEach(counter => {
+                    counter.textContent = '0';
+                });
+                setTimeout(animateCounters, 500);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupIntersectionObserver();
+            setTimeout(animateCounters, 1000);
+        });
+
+        // Smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
