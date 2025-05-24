@@ -30,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
+       
         nav {
             position: fixed;
             top: 0;
@@ -94,7 +94,7 @@
             text-decoration: none;
         }
 
-        /* Page Content */
+      
         .page {
             display: none;
             min-height: 100vh;
@@ -179,7 +179,7 @@
             }
         }
 
-        /* Statistics Section */
+       
         .stats-section {
             background: var(--bg-light);
             padding: 4rem 0;
@@ -242,7 +242,7 @@
             }
         }
 
-        /* Content Sections */
+       
         .content-section {
             padding: 4rem 0;
         }
@@ -296,7 +296,7 @@
             line-height: 1.8;
         }
 
-        /* Help Actions */
+        
         .help-actions {
             background: linear-gradient(135deg, var(--accent-color) 0%, var(--orange) 100%);
             padding: 4rem 0;
@@ -404,7 +404,7 @@
         </div>
     </nav>
 
-    <!-- Home Page -->
+   
     <div id="home" class="page active">
         <section class="hero">
             <div class="hero-content">
@@ -432,7 +432,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-number counter" data-target="53">0</div>
-                        <div class="stat-label">Billios meals needed annually across the world</div>
+                        <div class="stat-label">Billions meals needed annually across the world</div>
                     </div>
                 </div>
             </div>
@@ -462,7 +462,7 @@
         </section>
     </div>
 
-    <!-- Problem Page -->
+  
     <div id="problem" class="page">
         <section class="hero">
             <div class="hero-content">
@@ -530,7 +530,7 @@
         </section>
     </div>
 
-    <!-- Help Page -->
+   
     <div id="help" class="page">
         <section class="hero">
             <div class="hero-content">
@@ -604,34 +604,34 @@
         </section>
     </div>
 
-    <!-- Footer -->
+   
     
 
     <script>
-        // Page navigation
+       
         function showPage(pageId) {
-            // Hide all pages
+          
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             
-            // Show selected page
+            
             document.getElementById(pageId).classList.add('active');
             
-            // Update navigation
+           
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('active'));
             event.target.classList.add('active');
             
-            // Scroll to top
+          
             window.scrollTo(0, 0);
             
-            // Trigger animations for the new page
+          
             setTimeout(() => {
                 animateElements();
             }, 100);
         }
 
-        // Navbar scroll effect
+      
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -641,7 +641,7 @@
             }
         });
 
-        // Counter animation
+      
         function animateCounters() {
             const counters = document.querySelectorAll('.counter');
             counters.forEach(counter => {
@@ -659,7 +659,7 @@
             });
         }
 
-        // Intersection Observer for animations
+       
         function setupIntersectionObserver() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -678,9 +678,9 @@
             fadeElements.forEach(el => observer.observe(el));
         }
 
-        // Animate elements when page loads or changes
+       
         function animateElements() {
-            // Animate stat cards if they're visible
+          
             const statCards = document.querySelectorAll('.stat-card');
             const isStatsVisible = Array.from(statCards).some(card => {
                 const rect = card.getBoundingClientRect();
@@ -696,13 +696,13 @@
             }
         }
 
-        // Initialize
+        
         document.addEventListener('DOMContentLoaded', function() {
             setupIntersectionObserver();
             setTimeout(animateCounters, 1000);
         });
 
-        // Smooth scrolling for better UX
+       
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
