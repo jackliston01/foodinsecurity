@@ -90,6 +90,9 @@
             height: 2px;
             background: var(--accent-color);
         }
+        a{
+            text-decoration: none;
+        }
 
         /* Page Content */
         .page {
@@ -342,27 +345,25 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-top: 1.2rem;
         }
 
         .action-button:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+        .actionparagraph{
+            margin-bottom: 2rem;
 
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 3rem 0;
+
         }
 
-        /* Responsive Design */
+
         @media (max-width: 768px) {
-            .nav-links {
+            .logo {
                 display: none;
             }
+            
 
             .hero h1 {
                 font-size: 2.5rem;
@@ -379,7 +380,6 @@
             }
         }
 
-        /* Scroll animations */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -393,7 +393,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo" onclick="showPage('home')">🍽️ Breaking Barriers</a>
@@ -547,26 +546,20 @@
                     <div class="action-card fade-in">
                         <div class="action-icon">🤝</div>
                         <h3 class="action-title">Volunteer</h3>
-                        <p>Join local food banks, soup kitchens, or community gardens. Your time and skills can directly impact families in need.</p>
-                        <button class="action-button">Find Opportunities</button>
+                        <p class="actionparagraph">Join local food banks, soup kitchens, or community gardens. Your time and skills can directly impact families in need.</p>
+                        <a href="https://www.lagunafoodpantry.org/volunteer" class="action-button">Find Opportunities</a>
                     </div>
                     <div class="action-card fade-in">
                         <div class="action-icon">💝</div>
                         <h3 class="action-title">Donate</h3>
-                        <p>Financial contributions help organizations purchase food efficiently and fund essential programs. Every dollar makes a difference.</p>
-                        <button class="action-button">Make a Donation</button>
+                        <p class="actionparagraph">Financial contributions help organizations purchase food efficiently and fund essential programs. Every dollar makes a difference.</p>
+                        <a href ="https://www.lagunafoodpantry.org/donate-laguna-food-pantry" class="action-button">Make a Donation</a>
                     </div>
                     <div class="action-card fade-in">
                         <div class="action-icon">📢</div>
                         <h3 class="action-title">Advocate</h3>
-                        <p>Contact elected officials about policies addressing food insecurity. Raise awareness in your community and social networks.</p>
-                        <button class="action-button">Learn More</button>
-                    </div>
-                    <div class="action-card fade-in">
-                        <div class="action-icon">🏫</div>
-                        <h3 class="action-title">Support School Programs</h3>
-                        <p>Help fund school breakfast and lunch programs, weekend backpack programs, and summer feeding initiatives.</p>
-                        <button class="action-button">Get Involved</button>
+                        <p class="actionparagraph">Contact elected officials about policies addressing food insecurity. Raise awareness in your community and social networks.</p>
+                        <a href="https://www.feedingamerica.org/advocate" class="action-button">Learn More</a>
                     </div>
                 </div>
             </div>
