@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking Barriers - Food Insecurity</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "39c09b6e05a34dda922a070f9140d6cf"}'></script><!-- End Cloudflare Web Analytics -->
+     <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo" >🍽️ Breaking Barriers</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active" >Home</a></li>
+                <li><a href="problem.html" class="nav-link" >The Problem</a></li>
+                <li><a href="action.html" class="nav-link">How to Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
+   
+
+    <div id="help" class="page">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Contact your local represantitves</h1>
+                <p>Fill out your details and we'll make a special email link for you.</p>
+                <form id="emailrepform">
+                    <label>Your Name:</label>
+                    <input id="emailname" type="text">
+                    <label>Your City:</label>
+                    <input id="emailcity" type="text">
+                    <button type="button" id="emailrep" onclick="email()">Email your reps!</button>
+                
+                </form>
+
+            </div>
+            
+        </section>
+
+        <section class="help-actions">
+            <div class="container">
+                <h2 class="section-title" style="color: white;">Take Action Today</h2>
+                <div class="action-grid">
+                    <div class="action-card fade-in">
+                        <div class="action-icon">🤝</div>
+                        <h3 class="action-title">Volunteer</h3>
+                        <p class="actionparagraph">Join local food banks, soup kitchens, or community gardens. Your time and skills can directly impact families in need.</p>
+                        <a href="https://www.lagunafoodpantry.org/volunteer" class="action-button">Find Opportunities</a>
+                    </div>
+                    <div class="action-card fade-in">
+                        <div class="action-icon">💝</div>
+                        <h3 class="action-title">Donate</h3>
+                        <p class="actionparagraph">Financial contributions help organizations purchase food efficiently and fund essential programs. Every dollar makes a difference.</p>
+                        <a href ="https://www.lagunafoodpantry.org/donate-laguna-food-pantry" class="action-button">Make a Donation</a>
+                    </div>
+                    <div class="action-card fade-in">
+                        <div class="action-icon">📢</div>
+                        <h3 class="action-title">Advocate</h3>
+                        <p class="actionparagraph">Contact elected officials about policies addressing food insecurity. Raise awareness in your community and social networks.</p>
+                        <a href="https://www.feedingamerica.org/advocate" class="action-button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Ways to Help</h2>
+                <div class="content-grid">
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🛒</div>
+                        <h3 class="card-title">Food Drives</h3>
+                        <p class="card-text">Organize food drives at work, school, or in your neighborhood. Focus on nutritious, non-perishable items that families actually need.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🌱</div>
+                        <h3 class="card-title">Community Gardens</h3>
+                        <p class="card-text">Start or support community gardens that provide fresh produce to local families while teaching valuable skills.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">👨‍🏫</div>
+                        <h3 class="card-title">Education Programs</h3>
+                        <p class="card-text">Support nutrition education, cooking classes, and budgeting workshops that help families maximize their food resources.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">💼</div>
+                        <h3 class="card-title">Corporate Partnerships</h3>
+                        <p class="card-text">Encourage your employer to partner with local food organizations through employee giving campaigns or volunteer programs.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">📱</div>
+                        <h3 class="card-title">Spread Awareness</h3>
+                        <p class="card-text">Use social media to educate others about food insecurity and share resources for those in need.</p>
+                    </div>
+                    <div class="content-card fade-in">
+                        <div class="card-icon">🏛️</div>
+                        <h3 class="card-title">Policy Advocacy</h3>
+                        <p class="card-text">Support policies that address root causes: affordable housing, living wages, healthcare access, and strengthened nutrition programs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+   
+    
+
+    <script>
+        
+       
+      
+
+      
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+      
+      
+
+       
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.classList.contains('stat-card')) {
+                            entry.target.classList.add('animate');
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const fadeElements = document.querySelectorAll('.fade-in, .stat-card');
+            fadeElements.forEach(el => observer.observe(el));
+        }
+
+       
+        function animateElements() {
+          
+            const statCards = document.querySelectorAll('.stat-card');
+            const isStatsVisible = Array.from(statCards).some(card => {
+                const rect = card.getBoundingClientRect();
+                return rect.top < window.innerHeight && rect.bottom > 0;
+            });
+
+            if (isStatsVisible && !document.querySelector('.counter').textContent.includes('0')) {
+                // Reset counters
+                document.querySelectorAll('.counter').forEach(counter => {
+                    counter.textContent = '0';
+                });
+                setTimeout(animateCounters, 500);
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setupIntersectionObserver();
+            setTimeout(animateCounters, 1000);
+        });
+        function email() {
+            const emailname = document.getElementById("emailname").value
+            const emailcity = document.getElementById("emailcity").value
+            console.log("tet")
+            console.log(emailname,emailcity)
+            
+            const emailstring=(`mailto:janet.nguyen@ocgov.com,vicente.sarmiento@ocgov.com,donald.wagner@ocgov.com,katrina.foley@ocgov.com,doug.chaffee@ocgov.com?subject=Food%20Insecurity%20in%20Orange%20County&body=Dear%20Orange%20County%20Board%20of%20Supervisors%2C%0A%0AI%20hope%20this%20message%20finds%20you%20well.%20My%20name%20is%20%5B${emailname}%5D%2C%20and%20I%20am%20a%20concerned%20resident%20of%20Orange%20County%20writing%20to%20bring%20urgent%20attention%20to%20the%20growing%20issue%20of%20food%20insecurity%20in%20our%20community.%0A%0ADespite%20Orange%20County%E2%80%99s%20reputation%20for%20affluence%2C%20many%20families%2C%20seniors%2C%20and%20children%20face%20hunger%20daily.%20Rising%20housing%20costs%2C%20stagnant%20wages%2C%20and%20inflation%20have%20made%20it%20increasingly%20difficult%20for%20residents%20to%20access%20nutritious%20food.%20According%20to%20recent%20reports%2C%20over%20400%2C000%20people%20in%20Orange%20County%20are%20food%20insecure%E2%80%94including%20nearly%201%20in%205%20children.%0A%0AI%20urge%20you%20to%20prioritize%20action%20on%20this%20issue.%20One%20effective%20and%20realistic%20solution%20would%20be%20to%20expand%20funding%20and%20support%20for%20community-based%20food%20hubs%20and%20urban%20farming%20programs.%20These%20programs%20can%3A%0A%0A%E2%80%A2%20Increase%20access%20to%20fresh%2C%20locally%20grown%20produce%20in%20underserved%20neighborhoods%0A%E2%80%A2%20Provide%20job%20training%20and%20employment%20opportunities%20in%20agriculture%20and%20sustainability%0A%E2%80%A2%20Reduce%20the%20environmental%20impact%20of%20food%20transportation%0A%E2%80%A2%20Strengthen%20local%20economies%20and%20build%20community%20resilience%0A%0AAdditionally%2C%20partnering%20with%20existing%20organizations%20like%20Second%20Harvest%20Food%20Bank%20and%20local%20school%20districts%20can%20help%20improve%20food%20distribution%20systems%20and%20ensure%20that%20no%20child%20or%20family%20goes%20hungry.%0A%0AFood%20security%20is%20a%20fundamental%20human%20right%2C%20and%20I%20believe%20our%20local%20government%20has%20the%20power%20and%20responsibility%20to%20help%20make%20this%20a%20reality%20for%20all%20residents.%0A%0AThank%20you%20for%20your%20time%2C%20and%20for%20your%20commitment%20to%20serving%20our%20community.%0A%0ASincerely%2C%0A%5B${emailname}%5D%0A%5B${emailcity}%5D`)
+            window.location.href = emailstring;
+
+        }
+       
+       
+    </script>
+</body>
+</html>
