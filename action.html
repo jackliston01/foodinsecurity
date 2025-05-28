@@ -170,13 +170,15 @@
         function email() {
             const emailname = document.getElementById("emailname").value
             const emailcity = document.getElementById("emailcity").value
-            console.log("tet")
-            console.log(emailname,emailcity)
-            
+            if (emailname == undefined || emailcity == undefined){
+                alert("Fill in your name and city and try again.")
+                 
+            }
+            else {
             const emailstring=(`mailto:janet.nguyen@ocgov.com,vicente.sarmiento@ocgov.com,donald.wagner@ocgov.com,katrina.foley@ocgov.com,doug.chaffee@ocgov.com?subject=Food%20Insecurity%20in%20Orange%20County&body=Dear%20Orange%20County%20Board%20of%20Supervisors%2C%0A%0AI%20hope%20this%20message%20finds%20you%20well.%20My%20name%20is%20${emailname}%2C%20and%20I%20am%20a%20concerned%20resident%20of%20Orange%20County%20writing%20to%20bring%20urgent%20attention%20to%20the%20growing%20issue%20of%20food%20insecurity%20in%20our%20community.%0A%0ADespite%20Orange%20County%E2%80%99s%20reputation%20for%20affluence%2C%20many%20families%2C%20seniors%2C%20and%20children%20face%20hunger%20daily.%20Rising%20housing%20costs%2C%20stagnant%20wages%2C%20and%20inflation%20have%20made%20it%20increasingly%20difficult%20for%20residents%20to%20access%20nutritious%20food.%20According%20to%20recent%20reports%2C%20over%20400%2C000%20people%20in%20Orange%20County%20are%20food%20insecure%E2%80%94including%20nearly%201%20in%205%20children.%0A%0AI%20urge%20you%20to%20prioritize%20action%20on%20this%20issue.%20One%20effective%20and%20realistic%20solution%20would%20be%20to%20expand%20funding%20and%20support%20for%20community-based%20food%20hubs%20and%20urban%20farming%20programs.%20These%20programs%20can%3A%0A%0A%E2%80%A2%20Increase%20access%20to%20fresh%2C%20locally%20grown%20produce%20in%20underserved%20neighborhoods%0A%E2%80%A2%20Provide%20job%20training%20and%20employment%20opportunities%20in%20agriculture%20and%20sustainability%0A%E2%80%A2%20Reduce%20the%20environmental%20impact%20of%20food%20transportation%0A%E2%80%A2%20Strengthen%20local%20economies%20and%20build%20community%20resilience%0A%0AAdditionally%2C%20partnering%20with%20existing%20organizations%20like%20Second%20Harvest%20Food%20Bank%20and%20local%20school%20districts%20can%20help%20improve%20food%20distribution%20systems%20and%20ensure%20that%20no%20child%20or%20family%20goes%20hungry.%0A%0AFood%20security%20is%20a%20fundamental%20human%20right%2C%20and%20I%20believe%20our%20local%20government%20has%20the%20power%20and%20responsibility%20to%20help%20make%20this%20a%20reality%20for%20all%20residents.%0A%0AThank%20you%20for%20your%20time%2C%20and%20for%20your%20commitment%20to%20serving%20our%20community.%0A%0ASincerely%2C%0A${emailname}%0A${emailcity}`)
             console.log(emailstring)
-            window.location.href = "mailto:jack@f.com";
-
+            window.location.href = emailstring;
+            }
         }
        
        
