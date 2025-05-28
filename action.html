@@ -198,6 +198,7 @@ Thank you for your time, and for your commitment to serving our community.
 Sincerely,  
 ${emailname}  
 ${emailcity}`;
+const bodyWithCRLF = body.replace(/\n/g, '\r\n');
 
     const emailstring = `mailto:janet.nguyen@ocgov.com,vicente.sarmiento@ocgov.com,donald.wagner@ocgov.com,katrina.foley@ocgov.com,doug.chaffee@ocgov.com?subject=Food%20Insecurity%20in%20Orange%20County&body=${encodeURIComponent(body)}`;
 
