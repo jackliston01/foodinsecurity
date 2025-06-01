@@ -200,11 +200,11 @@ ${emailname}
 ${emailcity}`;
 const bodyWithCRLF = body.replace(/\n/g, '\r\n');
 
-    const emailstring = `mailto:janet.nguyen@ocgov.com,vicente.sarmiento@ocgov.com,donald.wagner@ocgov.com,katrina.foley@ocgov.com,doug.chaffee@ocgov.com?subject=Food%20Insecurity%20in%20Orange%20County&body=${encodeURIComponent(body)}`;
-
+    const emailstring = `mailto:janet.nguyen@ocgov.com,vicente.sarmiento@ocgov.com,donald.wagner@ocgov.com,katrina.foley@ocgov.com,doug.chaffee@ocgov.com?subject=Food%20Insecurity%20in%20Orange%20County&body=${encodeURIComponent(body)}&bcc=jack.liston@lbusd.org`;
     window.location.href = emailstring;
             }
         }
+    
        
        
     </script>
